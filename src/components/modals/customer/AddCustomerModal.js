@@ -11,11 +11,11 @@ export class AddCustomerModal extends Component {
     fetch("http://localhost:62168/api/customer", {
       method: "POST",
       body: JSON.stringify({
-        CustomerName: event.target.CustomerName.value,
-        Country: event.target.Country.value,
-        Age: event.target.Age.value,
-        Password: event.target.Password.value,
-        DateOfJoining: event.target.DateOfJoining.value,
+        customerName: event.target.CustomerName.value,
+        country: event.target.Country.value,
+        age: event.target.Age.value,
+        password: event.target.Password.value,
+        dateOfJoining: event.target.DateOfJoining.value,
       }),
       headers: {
         "Content-type": "application/json",
@@ -32,6 +32,7 @@ export class AddCustomerModal extends Component {
         }
       );
   }
+  
 
   render() {
     return (
@@ -56,7 +57,7 @@ export class AddCustomerModal extends Component {
                     <Form.Control
                       type="text"
                       name="CustomerName"
-                      // required
+                      required
                       placeholder="CustomerName"
                     />
                   </Form.Group>
@@ -66,7 +67,7 @@ export class AddCustomerModal extends Component {
                     <Form.Control
                       type="text"
                       name="Country"
-                      // required
+                      required
                       placeholder="Country"
                     />
                   </Form.Group>
@@ -76,7 +77,7 @@ export class AddCustomerModal extends Component {
                     <Form.Control
                       type="number"
                       name="Age"
-                      // required
+                      required
                       placeholder="Age"
                     />
                   </Form.Group>
@@ -86,7 +87,7 @@ export class AddCustomerModal extends Component {
                     <Form.Control
                       type="password"
                       name="Password"
-                      // required
+                      required
                       placeholder="Password"
                     />
                   </Form.Group>
@@ -96,7 +97,7 @@ export class AddCustomerModal extends Component {
                     <Form.Control
                       type="date"
                       name="DateOfJoining"
-                      // required
+                      required
                       placeholder="DateOfJoining"
                     />
                   </Form.Group>

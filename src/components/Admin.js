@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Table } from "react-bootstrap";
 import { Button, ButtonToolbar } from "react-bootstrap";
-import { AddAdminModal } from "./AddAdminModal";
-import { EditAdminModal } from "./EditAdminModal";
+import { AddAdminModal } from "./modals/admin/AddAdminModal";
+import { EditAdminModal } from "./modals/admin/EditAdminModal";
 
 export class Admin extends Component {
   constructor(props) {
@@ -59,7 +59,7 @@ export class Admin extends Component {
                 <td>{admin.id}</td>
                 <td>{admin.username}</td>
                 <td>{admin.mail}</td>
-                <td>{admin.password}</td>
+                <td class="hidetext">{admin.password}</td>
                 <td>
                   <ButtonToolbar>
                     <Button

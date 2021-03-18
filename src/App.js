@@ -1,9 +1,10 @@
 import "./App.css";
 
-import { Home } from "./Home";
-import { Customer } from "./Customer";
-import { Admin } from "./Admin";
-import { Navigation } from "./Navigation";
+import { Home } from "./components/Home";
+import { Customer } from "./components/Customer";
+import { Admin } from "./components/Admin";
+import { Product } from "./components/Product";
+import { Navigation } from "./components/navigation/Navigation";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
@@ -16,6 +17,7 @@ function App() {
 
         <Switch>
           <Route path="/" component={Home} exact />
+          <Route path="/product" component={Product} />
           <Route path="/admin" component={Admin} />
           <Route path="/customer" component={Customer} />
         </Switch>
