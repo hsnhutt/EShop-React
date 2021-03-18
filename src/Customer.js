@@ -35,6 +35,7 @@ export class Customer extends Component {
               <th>CustomerId</th>
               <th>CustomerName</th>
               <th>Country</th>
+              <th>Options</th>
             </tr>
           </thead>
           <tbody>
@@ -43,6 +44,7 @@ export class Customer extends Component {
                 <td>{customer.id}</td>
                 <td>{customer.customerName}</td>
                 <td>{customer.country}</td>
+                <td>Edit/Delete</td>
               </tr>
             ))}
           </tbody>

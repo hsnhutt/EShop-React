@@ -11,7 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="container">
-        <h3 className="m-3 d-flex justify-content-center">HELLO WORLD</h3>
+        <h3 className="m-3 d-flex justify-content-center">ESHOP</h3>
         <Navigation />
 
         <Switch>

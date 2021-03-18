@@ -21,9 +21,8 @@ export class AddCustomerModal extends Component {
         "Content-type": "application/json",
       },
     })
-      .then((response) => response.json())
-      .then((json) => console.log(json))
       .then((res) => res.json())
+      .then((json) => console.log(json))
       .then(
         (result) => {
           alert("Success");
@@ -33,7 +32,6 @@ export class AddCustomerModal extends Component {
         }
       );
   }
-  
 
   render() {
     return (

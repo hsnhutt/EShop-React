@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Modal, Button, Row, Col, Form } from "react-bootstrap";
 
-export class AddAdminModal extends Component {
+export class EditAdminModal extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -9,9 +9,10 @@ export class AddAdminModal extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    fetch("http://localhost:62168/api/admin", {
-      method: "POST",
+    fetch("http://localhost:62168/api/admin/" + this.props.id, {
+      method: "PUT",
       body: JSON.stringify({
+        Id: parseInt(event.target.Id.value,10) ,
         Username: event.target.Username.value,
         Mail: event.target.Mail.value,
         Password: event.target.Password.value,
@@ -28,7 +29,7 @@ export class AddAdminModal extends Component {
           alert("Success");
         },
         (error) => {
-          alert("Failed");
+          console.log(error);
         }
       );
   }
@@ -43,19 +44,31 @@ export class AddAdminModal extends Component {
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              Add Admin
+              Edit Admin
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Row>
               <Col sm={6}>
                 <Form onSubmit={this.handleSubmit}>
+                  <Form.Group controlId="Id">
+                    <Form.Label>Id</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="Id"
+                      required
+                      disabled
+                      defaultValue={this.props.id}
+                      placeholder="Id"
+                    />
+                  </Form.Group>
                   <Form.Group controlId="Username">
                     <Form.Label>Username</Form.Label>
                     <Form.Control
                       type="text"
                       name="Username"
                       required
+                      defaultValue={this.props.username}
                       placeholder="Username"
                     />
                   </Form.Group>
@@ -66,6 +79,7 @@ export class AddAdminModal extends Component {
                       type="email"
                       name="Mail"
                       required
+                      defaultValue={this.props.mail}
                       placeholder="Mail"
                     />
                   </Form.Group>
@@ -76,13 +90,14 @@ export class AddAdminModal extends Component {
                       type="password"
                       name="Password"
                       required
+                      defaultValue={this.props.password}
                       placeholder="Password"
                     />
                   </Form.Group>
 
                   <Form.Group>
                     <Button variant="primary" type="submit">
-                      Add Admin
+                      Update Admin
                     </Button>
                   </Form.Group>
                 </Form>

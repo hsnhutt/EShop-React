@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Table } from "react-bootstrap";
-import {Button,ButtonToolbar} from "react-bootstrap";
-import {AddAdminModal} from "./AddAdminModal";
+import { Button, ButtonToolbar } from "react-bootstrap";
+import { AddAdminModal } from "./AddAdminModal";
+import { EditAdminModal } from "./EditAdminModal";
 
 export class Admin extends Component {
   constructor(props) {
     super(props);
-    this.state = { admins: [],addModalShow:false };
+    this.state = { admins: [], addModalShow: false, editModalShow: false };
   }
   refreshList() {
     fetch("http://localhost:62168/api/admin")
@@ -24,9 +25,22 @@ export class Admin extends Component {
     this.refreshList();
   }
 
+  deleteAdmin(id) {
+    if (window.confirm("Are you sure?")) {
+      fetch("http://localhost:62168/api/admin/" + id, {
+        method: "DELETE",
+        header: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+    }
+  }
+
   render() {
-    const { admins } = this.state;
-    let addModalClose=()=>this.setState({addModalShow:false})
+    const { admins, id, username, mail, password } = this.state;
+    let addModalClose = () => this.setState({ addModalShow: false });
+    let editModalClose = () => this.setState({ editModalShow: false });
     return (
       <div>
         <Table className="mt-4" striped bordered hover size="sm">
@@ -36,6 +50,7 @@ export class Admin extends Component {
               <th>Username</th>
               <th>Mail</th>
               <th>Password</th>
+              <th>Options</th>
             </tr>
           </thead>
           <tbody>
@@ -45,15 +60,55 @@ export class Admin extends Component {
                 <td>{admin.username}</td>
                 <td>{admin.mail}</td>
                 <td>{admin.password}</td>
+                <td>
+                  <ButtonToolbar>
+                    <Button
+                      className="mr-2"
+                      variant="info"
+                      onClick={() =>
+                        this.setState({
+                          editModalShow: true,
+                          id: admin.id,
+                          username: admin.username,
+                          mail: admin.mail,
+                          password: admin.password,
+                        })
+                      }
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      className="mr-2"
+                      variant="danger"
+                      onClick={() => this.deleteAdmin(admin.id)}
+                    >
+                      Delete
+                    </Button>
+                    <EditAdminModal
+                      show={this.state.editModalShow}
+                      onHide={editModalClose}
+                      id={id}
+                      username={username}
+                      mail={mail}
+                      password={password}
+                    />
+                  </ButtonToolbar>
+                </td>
               </tr>
             ))}
           </tbody>
         </Table>
         <ButtonToolbar>
-            <Button variant="primary" onClick={() => this.setState({addModalShow:true})}>
-                Add Admin
-            </Button>
-            <AddAdminModal show={this.state.addModalShow} onHide={addModalClose} />
+          <Button
+            variant="primary"
+            onClick={() => this.setState({ addModalShow: true })}
+          >
+            Add Admin
+          </Button>
+          <AddAdminModal
+            show={this.state.addModalShow}
+            onHide={addModalClose}
+          />
         </ButtonToolbar>
       </div>
     );
