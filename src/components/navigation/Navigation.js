@@ -1,30 +1,26 @@
 import React, { Component } from 'react';
-import { NavLink } from "react-router-dom";
-import {Navbar,Nav} from "react-bootstrap";
+import {Navbar,Nav,Form,Button,FormControl} from "react-bootstrap";
 
 
 export class Navigation extends Component{
     render(){
         return(
-            <Navbar bg="dark" expand="lg">
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav>
-                        <NavLink className="d-inline p-2 bg-dark text-white" to="/">
-                            Home
-                        </NavLink>
-                        <NavLink className="d-inline p-2 bg-dark text-white" to="/admin">
-                            Admin
-                        </NavLink>
-                        <NavLink className="d-inline p-2 bg-dark text-white" to="/customer">
-                            Customer
-                        </NavLink>
-                        <NavLink className="d-inline p-2 bg-dark text-white" to="/product">
-                            Product
-                        </NavLink>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
+            <Navbar bg="light" expand="lg">
+            <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
+                <Nav.Link href="/home">Home</Nav.Link>
+                <Nav.Link href="/admin">Admin</Nav.Link>
+                <Nav.Link href="/customer">Customer</Nav.Link>
+                <Nav.Link href="/product">Product</Nav.Link>
+              </Nav>
+              <Form inline>
+                <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                <Button variant="outline-success">Search</Button>
+              </Form>
+            </Navbar.Collapse>
+          </Navbar>
         )
     }
 }

@@ -1,6 +1,7 @@
 import "./App.css";
 
 import { Home } from "./components/Home";
+import { MainPage } from "./components/MainPage";
 import { Customer } from "./components/Customer";
 import { Admin } from "./components/Admin";
 import { Product } from "./components/Product";
@@ -16,7 +17,8 @@ function App() {
         <Navigation />
 
         <Switch>
-          <Route path="/" component={Home} exact />
+          <Route path="/" component={MainPage} exact />
+          <Route path="/home" component={Home} exact />
           <Route path="/product" component={Product} />
           <Route path="/admin" component={Admin} />
           <Route path="/customer" component={Customer} />
